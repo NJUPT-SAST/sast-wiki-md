@@ -1,0 +1,22 @@
+name: Dispatch
+
+on:
+  push:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      # tirgger aimixsaka/blog repo's action when push to this repo
+      - name: repository dispatch
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.PAT }}
+          repository: NJUPT-SAST/sast-wiki
+          event-type: update_docs
