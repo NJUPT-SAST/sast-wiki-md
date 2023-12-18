@@ -53,13 +53,13 @@
   3. 运行安装包，在安装向导界面中点击“安装”并等待程序自动安装。
   4. 使用默认设置完成安装，Windows 系统请确保 Add to PATH 和 Set JAVA_HOME variable 已勾选。
   
-     ![安装过程截图](../../assets/img/blog/java-environment/java-installation.png)
+    ![安装过程截图](../../assets/img/blog/java-environment/java-installation.png)
 
-     ![安装完毕截图](../../assets/img/blog/java-environment/java-installation-completed.png)
+    ![安装完毕截图](../../assets/img/blog/java-environment/java-installation-completed.png)
 
   5. 请打开系统终端，执行 `java --version` 查看是否安装成功。
 
-     ![java --version 执行结果](../../assets/img/blog/java-environment/java-version.png)
+    ![java --version 执行结果](../../assets/img/blog/java-environment/java-version.png)
 - OpenJDK 官网：<https://openjdk.java.net/>
 - 其他 OpenJDK 预编译包：
   - Microsoft 编译版本：<https://www.microsoft.com/openjdk>

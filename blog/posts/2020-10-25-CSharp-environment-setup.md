@@ -20,33 +20,33 @@ tags: C# .NET Tutorial
 
 2. 运行安装向导，完成后在终端中输入 `dotnet`，将看到以下信息：
 
-    ```dotnetcli
+```dotnetcli
     > dotnet
     
     Usage: dotnet [options]
     Usage: dotnet [path-to-application]
     
     Options:
-      -h|--help         Display help.
-      --info            Display .NET information.
-      --list-sdks       Display the installed SDKs.
-      --list-runtimes   Display the installed runtimes.
+    -h|--help         Display help.
+    --info            Display .NET information.
+    --list-sdks       Display the installed SDKs.
+    --list-runtimes   Display the installed runtimes.
     
     path-to-application:
-      The path to an application .dll file to execute.
-    ```
+    The path to an application .dll file to execute.
+```
 
 3. 在想创建项目的文件夹运行终端，输入
 
-    ```dotnetcli
+```dotnetcli
     dotnet new console -o HelloWorldApp
-    ```
+```
 
-    等待命令执行完成，这将创建一个 HelloWorldApp 文件夹
+等待命令执行完成，这将创建一个 HelloWorldApp 文件夹
 
-4. 用代码编辑器（建议使用 [Visual Studio Code](https://code.visualstudio.com/)）打开 HelloWorldApp 文件夹，其中的 Program.cs 文件应如下所示：
+1. 用代码编辑器（建议使用 [Visual Studio Code](https://code.visualstudio.com/)）打开 HelloWorldApp 文件夹，其中的 Program.cs 文件应如下所示：
 
-    ```csharp
+```csharp
     using System;
 
     namespace HelloWorldApp
@@ -59,13 +59,13 @@ tags: C# .NET Tutorial
             }
         }
     }
-    ```
+```
 
-5. 在 HelloWorldApp 文件夹中，执行
+2. 在 HelloWorldApp 文件夹中，执行
 
-    ```dotnetcli
+```dotnetcli
     dotnet run
-    ```
+```
 
     程序将运行并输出 `Hello World!`
 
@@ -94,7 +94,7 @@ tags: C# .NET Tutorial
 
 5. 将自动打开 Program.cs 文件，代码如下：
 
-    ```csharp
+```csharp
     using System;
     
     namespace HelloWorldApp
@@ -107,7 +107,7 @@ tags: C# .NET Tutorial
             }
         }
     }
-    ```
+```
 
 6. 按 F5 启动程序，程序将输出 `Hello World!` 与进程退出提示
 
