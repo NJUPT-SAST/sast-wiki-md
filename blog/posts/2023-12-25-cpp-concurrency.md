@@ -1,11 +1,15 @@
 ---  
 title: C++内存模型和原子类型操作 
 date: 2023-12-25  
-authors:
-  - Serein
 categories:  
     - blog  
-tags: C++ atomic
+tags: 
+    - C++
+authors:
+    squidfunk:
+        name: Serein
+        description: SASTer
+        avatar: https://avatars.githubusercontent.com/u/118594118
 ---   
 
 ## 内存模型基础
@@ -199,7 +203,7 @@ CAS操作就类似于memcmp使用位比较，而非为UDT类定义一个比较�
 
 当使用用户定义类型T进行实例化时， `std::atomic<T>` 的可用接口就只有: `load()`, `store()`, `exchange()`, `compare_exchange_weak()`, `compare_exchange_strong()`和赋值操作，以及向类型`T`转换的操作。
 
-![](../../assets/img/blog/cpp-concurrency/image5.png)
+![](/assets/img/blog/cpp-concurrency/image5.png)
 
 ### 原子操作的释放函数
 
@@ -315,7 +319,7 @@ int main() {
 
 讨论在程序首先看见x为true，y为false的情况下，那么顺序一致性保证 `x.store -> x.load -> y.load -> y.store-> y.load`。代码执行如下图：
 
-![](../../assets/img/blog/cpp-concurrency/image6.png)
+![](/assets/img/blog/cpp-concurrency/image6.png)
 
 > 顺序一致性模型 **保证写必须在读之前发生**
 >
