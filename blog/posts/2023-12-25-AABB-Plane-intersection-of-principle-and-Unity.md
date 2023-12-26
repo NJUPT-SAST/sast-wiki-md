@@ -1,5 +1,5 @@
 ---
-draft: true 
+title: AABB-Plane-intersection 的算法原理和 Unity 实现
 date: 2023-12-25 
 categories:
   - blog
