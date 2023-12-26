@@ -6,10 +6,7 @@ categories:
 tags: 
     - C++
 authors:
-    squidfunk:
-        name: Serein
-        description: SASTer
-        avatar: https://avatars.githubusercontent.com/u/118594118
+    - Serein
 ---   
 
 ## 内存模型基础
