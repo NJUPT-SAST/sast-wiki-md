@@ -7,4 +7,7 @@ jobs:
         run: pip install mkdocs-material
 
       - name: Test
-        run: bash test.sh
+        run: |
+          pwd
+          ls
+          bash test.sh
