@@ -59,6 +59,12 @@ authors:
     avatar: https://aliyun.sastimg.mxte.cc/images/2023/12/17/QQ20220819164336a533d1c9c523e00b.th.jpg
     slug: url           # Author profile slug
     url: https://wiki.sast.fun            # Author website URL
+  Serein:
+    name: Serein
+    description: SASTer
+    avatar: https://avatars.githubusercontent.com/u/118594118
+    slug: url           # Author profile slug
+    url: https://wiki.sast.fun            # Author website URL
   NONE:
     name: 匿名
     description: SASTer

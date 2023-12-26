@@ -6,11 +6,10 @@ categories:
 tags: 
     - C++
 authors:
-    squidfunk:
-        name: Serein
-        description: SASTer
-        avatar: https://avatars.githubusercontent.com/u/118594118
+    - Serein
 ---   
+
+聊聊C++并发编程中比较高级的无锁编程。
 
 ## 内存模型基础
 
@@ -20,6 +19,7 @@ authors:
 2. 每个对象至少占有一个内存位置。
 3. 基本类型都有确定的内存位置(无论类型大小如何，即使他们是相邻的，或是数组的一部分)。
 4. 相邻位域是相同内存中的一部分。
+<!--more-->
 
 ### 对象、内存位置和并发
 
