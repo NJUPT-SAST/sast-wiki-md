@@ -1,0 +1,10 @@
+on: pull_request
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install mkdocs
+        run: pip install mkdocs-material
+
+      - name: Test
+        run: bash test.sh
