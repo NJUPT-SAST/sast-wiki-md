@@ -3,7 +3,6 @@ draft: true
 date: 2023-12-25 
 categories:
   - blog
-  - game_development
 tags:
   - collision_detection
   - Unity
