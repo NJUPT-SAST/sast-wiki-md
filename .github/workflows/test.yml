@@ -1,0 +1,22 @@
+on: pull_request
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install mkdocs
+        run: pip install mkdocs-material
+
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Test
+        run: |
+          ORIGDIR=$PWD
+          cd ..
+          git clone https://github.com/NJUPT-SAST/sast-wiki.git
+          cd sast-wiki
+          git switch main
+          [[ -d docs ]] && rm -rf docs
+          mv $ORIGDIR docs
+          mkdocs build

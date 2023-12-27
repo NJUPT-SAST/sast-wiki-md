@@ -13,5 +13,5 @@
 - [南科手册](https://sustech.online/surroundings/)
 
 # 贡献
-如果你想贡献内容，请仔细阅读 [CONTRIBUTION.md](/CONTRIBUTION.html)
+如果你想贡献内容，请仔细阅读 [CONTRIBUTION.md](/CONTRIBUTION.md)
 
