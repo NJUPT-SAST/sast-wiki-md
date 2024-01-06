@@ -71,6 +71,12 @@ authors:
     avatar: https://rdququ.top/images/avatar.png
     slug: url           # Author profile slug
     url: https://wiki.sast.fun            # Author website URL
+  aimixsaka:
+    name: aimixsaka
+    description: SASTer
+    avatar: https://avatars.githubusercontent.com/u/95036645
+    slug: url           # Author profile slug
+    url: https://wiki.sast.fun            # Author website URL
   NONE:
     name: 匿名
     description: SASTer
