@@ -321,6 +321,7 @@ int main() {
 
 ![](/assets/img/blog/cpp-concurrency/image6.png)
 
+> [!NOTE]
 > 顺序一致性模型 **保证写必须在读之前发生**
 >
 > 对于每一步，随机选择一个线程，然后执行该线程执行的下一步（即程序或编译顺序）。 重复这个过程，直到整个程序终止。 这实际上等效于按（程序或编译）顺序执行所有线程的所有步骤，并以某种方式交错它们，从而产生所有步骤的单一总顺序。
@@ -332,6 +333,7 @@ int main() {
 > 原子类型上的操作以松散序列执行，没有任何同步关系。同一线程中对于同一变量的操作还是服从先发执行的关系，但是不同线程几乎不需要相对的顺序。唯一的要求是在访问同一线程中的单个原子变量不能重排序，当给定线程看到原子变量的特定值时，随后线程的读操作就不会去检索变量较早的那个值。当使用`memory_order_relaxed`，就不需要任何额外的同步，对于每个变量的修改顺序只是线程间共享的事情。
 
 #### 无承诺的保证
+
 `std::memory_order_relax`就是一种无承诺的保证。使用这种模式与没有使用这种模式达到的效果是一样的。
 
 ```cpp
@@ -373,7 +375,8 @@ void release_software(int *data) {
 }
 ```
 
-`std::memory_order_release`：在本行代码之前，如果有任何写内存的操作，都是不能放到本行语句之后的。简单地说，就是写不后。即，写语句不能调到本条语句之后。以这种形式通知编译器/CPU保证真正执行的时候，写语句不会放到 `has_release.store(true, std::memory_order_release)`之后。简单地记为 **写不后**。
+> [!NOTE]
+> `std::memory_order_release`：当前线程的读写操作不能够重排到此内存之后，其他线程的写语句不会放到 `has_release.store(true, std::memory_order_release)` 之后。
 
 ```cpp
 std::atomic<bool> has_release;
@@ -390,8 +393,6 @@ void release_software(int *data) {
 ```
 
 尽管要求`{1,2,3}`代码的执行不能放到`4`的后面，但是`{1,2,3}`本身是可以被乱序的。比如按照`{3,2,1,4}`的顺序执行也是可以的。
-
-#### 读顺序保证
 
 考虑下面的代码：
 
@@ -436,9 +437,10 @@ void acquire_software(void) {
 }
 ```
 
-`std::memory_order_acquire`：后续的读操作都不能放到这条指令之前。简单地可以写成 **读不前**。
+> [!NOTE]
+> `std::memory_order_acquire`：当前线程的读写操作不能被重排到该加载前，其他线程后续的写操作不能被重排到该加载前。
 
-#### 读顺序的削弱
+#### 写顺序的削弱
 
 ```cpp
 std::atomic<int> net_con{0};
@@ -472,30 +474,8 @@ void acquire_thread(void) {
 
 `buffer`与`file_content`的使用，与两个原子变量就目前的这段简短的代码而言是没有任何联系的。按理说，这两部分的代码是可以放到任何位置执行的。但是，由于使用了`release-acquire`，那么会导致的情况就是，`buffer`和`file_content`的访问都被波及。
 
-`std::memory_order_consume` 的含义是说，所有后续对本原子类型的操作，必须在本操作完成之后才可以执行。简单点就是 **不得前**。但是这个操作只能用来对读者进行优化。也就是说`release`线程是不能使用这个的。也就是说，只能对读依赖的一方进行优化。
-
-`std::memory_order_acquire`与`std::memory_order_consume`的区别在于：
-
-- `std::memory_order_acquire`是要求后面所有的读都不得提前。
-- `std::memory_order_consume`是要求后面依赖于本次形成读则不能乱序。 一个是针对所有的读，容易形成误伤。而consume只是要求依赖于consume这条语句的读写不得乱序。
-
-```cpp
-// consume example
-std::atomic<int*> global_addr{nullptr};
-
-void func(int *data) {
-    int *addr = global_addr.load(std::memory_order_consume);
-    int d = *data;
-    int f = *(data+1);
-    if (addr) {
-        int x = *addr;
-    }
-}
-```
-
-由于`global_addr`, `addr`, `x`形成了读依赖，那么这时候，这几个变量是不能乱序的。但是`d`,`f`是可以放到`int *addr = global_addr.load(std::memory_order_consume);`前面的。
-
-而`std::memory_order_acquire`则要求`d,f`都不能放到`int *addr = global_addr.load(std::memory_order_consume);`的前面。这就是`acquire`与`consume`的区别。
+> [!NOTE]
+> `std::memory_order_consume`：当前线程依赖于该变量的读写操作不能提前，其他线程依赖于该变量的写操作不能提前。
 
 #### 读写加强
 
@@ -509,4 +489,5 @@ void func(int *data) {
 
 由于`读寄存器地址1`与`写flag,标记中断处理完成`这两者之间的关系是读写关系。并不能被`std::memory_order_release`约束。所以需要更强的约束来处理。
 
-这里可以使用`std::memory_order_acq_rel`，即对本条语句的读写进行约束。即表示写不后，读不前同时生效。 那么就可以保证`a, b, c`三个操作不会乱序。即`std::memory_order_acq_rel`可以同时表示 **写不后 && 读不前**。
+> [!NOTE]
+> `std::memory_order_acq_rel`：当前线程的读或写内存不能被重排到此存储之前或之后。且其他线程可见该操作的读或写。
