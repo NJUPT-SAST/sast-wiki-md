@@ -1,3 +1,19 @@
+---
+draft: true 
+date: 2023-01-31 
+categories:
+  - blog
+tags:
+  - HarmonyOS
+  - Huawei
+  - ArkTS
+  - ArkUI
+authors:
+  squidfunk:
+    name: Wbil
+    description: SASTer
+    avatar: https://avatars.githubusercontent.com/u/109361390
+---
 # HarmonyOS NEXT
 
 > 本文档编写过程中 HarmonyOS NEXT Developer Beta2 升级为了 HarmonyOS NEXT Developer Beta3，Beta3 的API能力级别为API 12 Beta3，部分内容在不同版本中的使用和效果有所变化。
