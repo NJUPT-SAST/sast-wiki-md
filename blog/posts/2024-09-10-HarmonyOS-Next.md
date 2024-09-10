@@ -9,10 +9,7 @@ tags:
   - ArkTS
   - ArkUI
 authors:
-  squidfunk:
-    name: Wbil
-    description: SASTer
-    avatar: https://avatars.githubusercontent.com/u/109361390
+  - Wbil
 ---
 # HarmonyOS NEXT
 
